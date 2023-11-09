@@ -14,14 +14,42 @@ public class PlayerMovement : MonoBehaviour
     public float runSpeed;
     public float rotateSpeed;
 
+    bool dead;
+
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
         cam = Camera.main;
+
+        CustomEventSystem.current.onPlayerDeath += CantMove;
+        CustomEventSystem.current.onPlayerRespawn += CanMove;
+
+        CustomEventSystem.current.onTeamWin += MatchOver;
     }
 
+    public void CantMove(GameObject player)
+    {
+        if(player.GetComponent<PlayerDataHolder>().pd.team == gameObject.GetComponent<PlayerDataHolder>().pd.team)
+            dead = true;
+    }
+
+    public void CanMove(GameObject player)
+    {
+        if(player.GetComponent<PlayerDataHolder>().pd.team == gameObject.GetComponent<PlayerDataHolder>().pd.team)
+            dead = false;
+    }
+
+    public void MatchOver(Team team)
+    {
+        if (gameObject.GetComponent<PlayerDataHolder>().pd.team != team)
+            dead = true;
+
+    }
     private void Update()
     {
+        if(dead)
+            return;
+
         float horizontal = movementInput.x;
         float vertical = movementInput.y;
 

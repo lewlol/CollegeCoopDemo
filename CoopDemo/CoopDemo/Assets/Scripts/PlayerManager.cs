@@ -7,8 +7,8 @@ public class PlayerManager : MonoBehaviour
     GameObject player1;
     GameObject player2;
 
-    public Vector2 player1Pos;
-    public Vector2 player2Pos;
+    public PlayerData red;
+    public PlayerData blue;
 
     private void Start()
     {
@@ -20,28 +20,31 @@ public class PlayerManager : MonoBehaviour
         if(player1 == null)
         {
             player1 = player;
+            player1.GetComponent<PlayerDataHolder>().pd = red;
         }
         else
         {
             player2 = player;
+            player2.GetComponent<PlayerDataHolder>().pd = blue;
         }
     }
 
     public void StartMatch()
     {
-        player1.transform.position = player1Pos;
-        player2.transform.position = player2Pos;
+        CustomEventSystem.current.MatchStarted();
+        player1.transform.position = player1.GetComponent<PlayerDataHolder>().pd.spawnPos;
+        player2.transform.position = player2.GetComponent<PlayerDataHolder>().pd.spawnPos;
     }
 
     public void SetSpawn(GameObject player)
     {
         if(player == player1)
         {
-            player1.transform.position = player1Pos;
+            player1.transform.position = player1.GetComponent<PlayerDataHolder>().pd.spawnPos;
         }
         else
         {
-            player2.transform.position = player2Pos;
+            player2.transform.position = player2.GetComponent<PlayerDataHolder>().pd.spawnPos;
         }
     }
 }

@@ -16,10 +16,17 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        CustomEventSystem.current.PlayerHealthChange(gameObject.GetComponent<PlayerDataHolder>().pd.team, health, maxHealth);
         if(health <= 0)
         {
             StartCoroutine(Death());
         }
+    }
+
+    public void HealPlayer()
+    {
+        health = maxHealth;
+        CustomEventSystem.current.PlayerHealthChange(gameObject.GetComponent<PlayerDataHolder>().pd.team, health, maxHealth);
     }
 
     IEnumerator Death()
@@ -36,6 +43,9 @@ public class PlayerHealth : MonoBehaviour
         srr.enabled = false;
 
         yield return new WaitForSeconds(5f);
+
+        HealPlayer();
+        CustomEventSystem.current.PlayerRespawn(gameObject);
 
         bc.enabled = true;
         sr.enabled = true;

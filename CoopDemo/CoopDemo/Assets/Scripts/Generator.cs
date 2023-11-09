@@ -4,10 +4,59 @@ using UnityEngine;
 
 public class Generator : MonoBehaviour
 {
-    private void OnCollisionEnter2D(Collision2D collision)
+    public Team activeTeam;
+    bool matchStarted;
+    bool startGenningPoints;
+    float c = 0.5f;
+    float g = 0.5f;
+
+    private void Start()
+    {
+        CustomEventSystem.current.onMatchStarted += MatchStarted;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
+            Debug.Log("Player Colliding");
+            activeTeam = collision.gameObject.GetComponent<PlayerDataHolder>().pd.team;
+            startGenningPoints = true;
+            ColorTest(collision.gameObject.GetComponent<PlayerDataHolder>().pd.team);
+        }
+    }
+
+    public void MatchStarted()
+    {
+        matchStarted = true;
+    }
+
+    private void Update()
+    {
+        if(matchStarted && startGenningPoints)
+        {
+            float countdown = c -= Time.deltaTime;
+            if(countdown <= 0)
+            {
+                Debug.Log("Point for the " + activeTeam + " Team");
+                CustomEventSystem.current.PointGained(activeTeam, 1);
+                c = 0.5f;
+            }
+        }
+
+
+    }
+
+    public void ColorTest(Team team)
+    {
+        if(team == Team.Red)
+        {
+            GetComponentInParent<SpriteRenderer>().color = Color.red;
+        }
+        else
+        {
+            GetComponentInParent<SpriteRenderer>().color = Color.blue;
+
         }
     }
 }
