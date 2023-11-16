@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5571e337cdab7f459120c671d6c23fb, type: 3}
-  m_Name: DashAbility
+  m_Script: {fileID: 11500000, guid: 78c54f70bca74b34b839d2ab87fdb540, type: 3}
+  m_Name: GenericHeal
   m_EditorClassIdentifier: 
-  name: Dash
-  coolDownTime: 15
+  name: Generic Heal
+  coolDownTime: 10
   activeTime: 0.5
-  dashVelocity: 15
+  healAmount: 25

@@ -50,7 +50,7 @@ public class AbilityHolder : MonoBehaviour
     }
     public void UseAbility(InputAction.CallbackContext ctx)
     {
-        if (ctx.started)
+        if (ctx.performed)
         {
             if (state == AbilityState.ready)
             {

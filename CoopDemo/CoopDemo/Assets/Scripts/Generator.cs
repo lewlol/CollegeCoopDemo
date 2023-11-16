@@ -10,6 +10,8 @@ public class Generator : MonoBehaviour
     float c = 0.5f;
     float g = 0.5f;
 
+    public GameObject[] squares;
+
     private void Start()
     {
         CustomEventSystem.current.onMatchStarted += MatchStarted;
@@ -49,14 +51,16 @@ public class Generator : MonoBehaviour
 
     public void ColorTest(Team team)
     {
-        if(team == Team.Red)
+        foreach (GameObject s in squares)
         {
-            GetComponentInParent<SpriteRenderer>().color = Color.red;
-        }
-        else
-        {
-            GetComponentInParent<SpriteRenderer>().color = Color.blue;
-
+            if(team == Team.Red)
+            {
+                s.GetComponent<SpriteRenderer>().color = Color.red;
+            }
+            else
+            {
+                s.GetComponent<SpriteRenderer>().color = Color.blue;
+            }
         }
     }
 }

@@ -23,7 +23,17 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void HealPlayer()
+    public void HealPlayer(int healAmount)
+    {
+        health += healAmount;
+        if(health > maxHealth)
+        {
+            health = maxHealth;
+        }
+        CustomEventSystem.current.PlayerHealthChange(gameObject.GetComponent<PlayerDataHolder>().pd.team, health, maxHealth);
+    }
+
+    public void FullHeal()
     {
         health = maxHealth;
         CustomEventSystem.current.PlayerHealthChange(gameObject.GetComponent<PlayerDataHolder>().pd.team, health, maxHealth);
@@ -44,7 +54,7 @@ public class PlayerHealth : MonoBehaviour
 
         yield return new WaitForSeconds(5f);
 
-        HealPlayer();
+        FullHeal();
         CustomEventSystem.current.PlayerRespawn(gameObject);
 
         bc.enabled = true;
