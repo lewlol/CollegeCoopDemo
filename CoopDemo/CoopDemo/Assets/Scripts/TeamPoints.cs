@@ -9,30 +9,40 @@ public class TeamPoints : MonoBehaviour
 
     public int winPoints;
 
+    bool gameWon;
     private void Start()
     {
         CustomEventSystem.current.onPointGained += AddPoints;
+        CustomEventSystem.current.onTeamWin += GameWon;
     }
     public void AddPoints(Team team, int amount)
     {
-        if (team == Team.Red)
+        if (!gameWon)
         {
-            teamRed += amount;
-            CustomEventSystem.current.PointsUpdate(team, teamRed);
-            if(teamRed >= winPoints)
+            if (team == Team.Red)
             {
-                Win(team);
+                teamRed += amount;
+                CustomEventSystem.current.PointsUpdate(team, teamRed);
+                if (teamRed >= winPoints)
+                {
+                    Win(team);
+                }
+            }
+            else
+            {
+                teamBlue += amount;
+                CustomEventSystem.current.PointsUpdate(team, teamBlue);
+                if (teamBlue >= winPoints)
+                {
+                    Win(team);
+                }
             }
         }
-        else
-        {
-            teamBlue += amount;
-            CustomEventSystem.current.PointsUpdate(team, teamBlue);
-            if (teamBlue >= winPoints)
-            {
-                Win(team);
-            }
-        }
+    }
+
+    public void GameWon(Team team)
+    {
+        gameWon = true;
     }
 
     public void Win(Team team)

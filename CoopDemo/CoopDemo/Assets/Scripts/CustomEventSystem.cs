@@ -82,4 +82,13 @@ public class CustomEventSystem : MonoBehaviour
             onPlayerHealthChange(team, health, maxhealth);
         }
     }
+
+    public event Action<Ability> onAbilityPickup;
+    public void AbilityPickup(Ability ability)
+    {
+        if(onAbilityPickup != null)
+        {
+            onAbilityPickup(ability);
+        }
+    }
 }
