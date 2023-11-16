@@ -53,6 +53,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ability"",
+                    ""type"": ""Button"",
+                    ""id"": ""4ff7b1a9-6896-4933-af29-2bc340bad68c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -143,6 +152,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Shooting"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""564848b5-3410-4813-873d-d802a254d246"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Ability"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -154,6 +174,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
         m_Gameplay_Rotate = m_Gameplay.FindAction("Rotate", throwIfNotFound: true);
         m_Gameplay_Shooting = m_Gameplay.FindAction("Shooting", throwIfNotFound: true);
+        m_Gameplay_Ability = m_Gameplay.FindAction("Ability", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -216,6 +237,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Move;
     private readonly InputAction m_Gameplay_Rotate;
     private readonly InputAction m_Gameplay_Shooting;
+    private readonly InputAction m_Gameplay_Ability;
     public struct GameplayActions
     {
         private @Controls m_Wrapper;
@@ -223,6 +245,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Gameplay_Move;
         public InputAction @Rotate => m_Wrapper.m_Gameplay_Rotate;
         public InputAction @Shooting => m_Wrapper.m_Gameplay_Shooting;
+        public InputAction @Ability => m_Wrapper.m_Gameplay_Ability;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -241,6 +264,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Shooting.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShooting;
                 @Shooting.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShooting;
                 @Shooting.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShooting;
+                @Ability.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAbility;
+                @Ability.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAbility;
+                @Ability.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAbility;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -254,6 +280,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Shooting.started += instance.OnShooting;
                 @Shooting.performed += instance.OnShooting;
                 @Shooting.canceled += instance.OnShooting;
+                @Ability.started += instance.OnAbility;
+                @Ability.performed += instance.OnAbility;
+                @Ability.canceled += instance.OnAbility;
             }
         }
     }
@@ -263,5 +292,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
         void OnShooting(InputAction.CallbackContext context);
+        void OnAbility(InputAction.CallbackContext context);
     }
 }
