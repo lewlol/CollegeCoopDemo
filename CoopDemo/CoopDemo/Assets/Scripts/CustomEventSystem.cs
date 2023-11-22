@@ -91,4 +91,13 @@ public class CustomEventSystem : MonoBehaviour
             onAbilityPickup(ability);
         }
     }
+
+    public event Action<bool> onPlayerMove;
+    public void PlayerMove(bool move)
+    {
+        if(onPlayerMove != null)
+        {
+            onPlayerMove(move);
+        }
+    }
 }

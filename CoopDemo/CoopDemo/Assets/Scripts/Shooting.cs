@@ -14,6 +14,8 @@ public class Shooting : MonoBehaviour
 
     public Transform bulletSpawn;
 
+    public GameObject rotateObject;
+
     [Header("Gun Options")]
     public GameObject bullet;
     public float bulletSpeed;
@@ -57,7 +59,7 @@ public class Shooting : MonoBehaviour
 
     private void DetermineDirection()
     {
-        float z = transform.rotation.eulerAngles.z;
+        float z = rotateObject.transform.rotation.eulerAngles.z;
         Vector2 shootDirection = Quaternion.Euler(0, 0, z) * Vector2.up;
 
         FireBullet(shootDirection);

@@ -9,10 +9,8 @@ public class PlayerMovement : MonoBehaviour
     Camera cam;
 
     Vector2 movementInput;
-    Vector2 rotate;
 
     public float runSpeed;
-    public float rotateSpeed;
 
     bool dead;
 
@@ -56,18 +54,17 @@ public class PlayerMovement : MonoBehaviour
         Vector3 movement = new Vector3(horizontal, vertical, 0f).normalized;
         Vector3 finalMovement = transform.position + movement * runSpeed * Time.deltaTime;
         transform.position = finalMovement;
-
-        if(rotate != Vector2.zero)
+        if(finalMovement != Vector3.zero)
         {
-            float targetAngle = Mathf.Atan2(rotate.x, rotate.y) * Mathf.Rad2Deg;
-            Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, -targetAngle));
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
+            CustomEventSystem.current.PlayerMove(true);
+        }
+        else
+        {
+            CustomEventSystem.current.PlayerMove(false);
         }
     }
 
     public void OnMove(InputAction.CallbackContext ctx) => movementInput = ctx.ReadValue<Vector2>();
-
-    public void OnRotate(InputAction.CallbackContext ctx) => rotate = ctx.ReadValue<Vector2>();
 
     private void OnEnable()
     {

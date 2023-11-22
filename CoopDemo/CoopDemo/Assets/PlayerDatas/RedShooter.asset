@@ -14,3 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 1
   spawnPos: {x: -13, y: 0}
+  idle: {fileID: 21300000, guid: 12227057737abe54ebb0bea499fdc218, type: 3}
+  walking:
+  - {fileID: 21300000, guid: 12227057737abe54ebb0bea499fdc218, type: 3}
+  - {fileID: 21300000, guid: 93640afe84337914589a988a5ab473ac, type: 3}
+  - {fileID: 21300000, guid: 12227057737abe54ebb0bea499fdc218, type: 3}
+  - {fileID: 21300000, guid: 174cddd8644b65647bcf00517b41879b, type: 3}

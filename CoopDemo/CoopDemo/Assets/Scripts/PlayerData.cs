@@ -7,4 +7,8 @@ public class PlayerData : ScriptableObject
 {
     public Team team;
     public Vector2 spawnPos;
+
+    [Header("Sprites")]
+    public Sprite idle;
+    public Sprite[] walking;
 }
