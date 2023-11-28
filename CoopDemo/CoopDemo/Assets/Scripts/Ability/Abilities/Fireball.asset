@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Fireball
   m_EditorClassIdentifier: 
   name: Fireball
+  abilityIcon: {fileID: 21300000, guid: 129d50b40a5dbb449ae23ef069eb9675, type: 3}
   coolDownTime: 15
   activeTime: 10
   fireballSpeed: 5
