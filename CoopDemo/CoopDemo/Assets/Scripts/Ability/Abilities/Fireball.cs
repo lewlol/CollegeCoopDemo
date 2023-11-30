@@ -9,14 +9,26 @@ public class Fireball : Ability
     public GameObject fireball;
 
     GameObject fb;
+    float rotation;
+    private void Awake()
+    {
+        CustomEventSystem.current.onPlayerRotated += GrabRotation;
+    }
     public override void Activate(GameObject parent)
     {
         fb = Instantiate(fireball, parent.transform.position, parent.transform.localRotation);
-        fb.GetComponent<Rigidbody2D>().velocity = Vector2.up * fireballSpeed;
+        Vector2 shootDir = Quaternion.Euler(0, 0, rotation) * Vector2.up;
+        fb.GetComponent<Rigidbody2D>().velocity = shootDir * fireballSpeed;
+        DestroyObject(fb);
     }
 
-    public override void BeginCooldown(GameObject parent)
+    public void GrabRotation(float rot)
     {
-        Destroy(fb);
+        rotation = rot;
+    }
+
+    public void DestroyObject(GameObject fb)
+    {
+        Destroy(fb, 5);
     }
 }

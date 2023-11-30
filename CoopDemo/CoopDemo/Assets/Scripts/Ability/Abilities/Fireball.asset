@@ -16,5 +16,5 @@ MonoBehaviour:
   abilityIcon: {fileID: 21300000, guid: 129d50b40a5dbb449ae23ef069eb9675, type: 3}
   coolDownTime: 15
   activeTime: 10
-  fireballSpeed: 5
+  fireballSpeed: 15
   fireball: {fileID: 8418273495562025638, guid: 5613cfcf01e99234688cfd49cd9fc7f8, type: 3}

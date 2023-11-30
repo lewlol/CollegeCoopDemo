@@ -100,4 +100,13 @@ public class CustomEventSystem : MonoBehaviour
             onPlayerMove(move);
         }
     }
+
+    public event Action<float> onPlayerRotated;
+    public void PlayerRotated(float rot)
+    {
+        if(onPlayerRotated != null)
+        {
+            onPlayerRotated(rot);   
+        }
+    }
 }

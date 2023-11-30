@@ -27,6 +27,7 @@ public class PlayerRotation : MonoBehaviour
             Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, -targetAngle));
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
             SwitchSprite();
+            CustomEventSystem.current.PlayerRotated(-targetAngle);
         }
     }
 

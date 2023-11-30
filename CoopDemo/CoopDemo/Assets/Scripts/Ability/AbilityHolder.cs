@@ -29,21 +29,9 @@ public class AbilityHolder : MonoBehaviour
                 }
                 else
                 {
-                    //ability.BeginCooldown(gameObject);
-                    //state = AbilityState.cooldown;
-                    //cooldownTime = ability.coolDownTime;
+                    //Nothing Needed Since 1 Per
                 }
                 break;
-           // case AbilityState.cooldown:
-            //    if(cooldownTime > 0)
-           //     {
-            //        cooldownTime -= Time.deltaTime;
-           //     }
-           //     else
-           //     {
-           //         state = AbilityState.ready;
-           //     }
-           //     break;
 
         }
 
