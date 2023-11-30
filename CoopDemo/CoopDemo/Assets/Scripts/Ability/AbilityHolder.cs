@@ -29,21 +29,21 @@ public class AbilityHolder : MonoBehaviour
                 }
                 else
                 {
-                    ability.BeginCooldown(gameObject);
-                    state = AbilityState.cooldown;
-                    cooldownTime = ability.coolDownTime;
+                    //ability.BeginCooldown(gameObject);
+                    //state = AbilityState.cooldown;
+                    //cooldownTime = ability.coolDownTime;
                 }
                 break;
-            case AbilityState.cooldown:
-                if(cooldownTime > 0)
-                {
-                    cooldownTime -= Time.deltaTime;
-                }
-                else
-                {
-                    state = AbilityState.ready;
-                }
-                break;
+           // case AbilityState.cooldown:
+            //    if(cooldownTime > 0)
+           //     {
+            //        cooldownTime -= Time.deltaTime;
+           //     }
+           //     else
+           //     {
+           //         state = AbilityState.ready;
+           //     }
+           //     break;
 
         }
 
@@ -52,11 +52,12 @@ public class AbilityHolder : MonoBehaviour
     {
         if (ctx.performed)
         {
-            if (state == AbilityState.ready)
+            if (state == AbilityState.ready && ability != null)
             {
                 Debug.Log("Ability Used");
                 ability.Activate(gameObject);
                 state = AbilityState.active;
+                ability = null;
             }
             else
             {

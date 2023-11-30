@@ -54,7 +54,9 @@ public class PlayerMovement : MonoBehaviour
         Vector3 movement = new Vector3(horizontal, vertical, 0f).normalized;
         Vector3 finalMovement = transform.position + movement * runSpeed * Time.deltaTime;
         transform.position = finalMovement;
-        if(finalMovement != Vector3.zero)
+
+        Debug.Log(finalMovement);
+        if(movementInput != Vector2.zero)
         {
             CustomEventSystem.current.PlayerMove(true);
         }

@@ -43,6 +43,10 @@ public class PlayerWalkingAnimation : MonoBehaviour
                 c = sReset;
             }
         }
+        else
+        {
+            sr.sprite = idle;
+        }
     }
 
     public IEnumerator AssignSprites()

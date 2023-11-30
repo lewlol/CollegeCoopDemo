@@ -27,7 +27,7 @@ public class AbilitySpawner : MonoBehaviour
 
     public void ResetCountdown()
     {
-        float c = Random.Range(5, 15);
+        float c = Random.Range(15, 30);
         countdown = c;
     }
 
