@@ -99,6 +99,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 964e179a8925b08428b521bc75f607dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  guns:
+  - {fileID: 11400000, guid: 7ef13d77354b74f42911d966a4f6f4dc, type: 2}
+  - {fileID: 11400000, guid: 9c4b5115c7549a74f8a1d428f57c7351, type: 2}
+  - {fileID: 11400000, guid: fe4ba2c99be547544b2c253e64e1b311, type: 2}
+  - {fileID: 11400000, guid: 1c6d6862c176d54479d5597e2a279ffc, type: 2}
   abilities:
   - {fileID: 11400000, guid: 910c91b1d66c832429a614d148e14703, type: 2}
   - {fileID: 11400000, guid: 8adf6651a21bf334aa6aef6cbf3e1be5, type: 2}

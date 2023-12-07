@@ -4,12 +4,22 @@ using UnityEngine;
 
 public class AbilityPickup : MonoBehaviour
 {
+    public GunData[] guns;
     public Ability[] abilities;
     Ability activeAbility;
+    GunData activeGun;
 
     private void Awake()
-    { 
-        ChooseAbility();
+    {
+        int r = Random.Range(0, 2);
+        if(r == 0)
+        {
+            ChooseAbility();
+        }
+        else if(r == 1)
+        {
+            ChooseGun();
+        }
     }
 
     public void ChooseAbility()
@@ -19,12 +29,29 @@ public class AbilityPickup : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = activeAbility.abilityIcon;
     }
 
+    public void ChooseGun()
+    {
+        int ranGun = Random.Range(0, guns.Length);
+        activeGun = guns[ranGun];
+        GetComponent<SpriteRenderer>().sprite = activeGun.gunSprite;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<AbilityHolder>().ability = activeAbility;
-            Destroy(gameObject);
+            if(activeAbility != null)
+            {
+                collision.gameObject.GetComponent<AbilityHolder>().ability = activeAbility;
+                Destroy(gameObject);
+            }
+
+            if(activeGun != null)
+            {
+                collision.gameObject.GetComponent<Shooting>().activeGun = activeGun;
+                CustomEventSystem.current.GunPickup(activeGun.gunSprite);
+                Destroy(gameObject);
+            }
         }
     }
 }

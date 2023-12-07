@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public LayerMask objects;
+    public int damage;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.layer == objects)
@@ -13,7 +14,7 @@ public class Bullet : MonoBehaviour
         }
         if(collision.gameObject.tag == "Player")
         {
-            collision.GetComponent<PlayerHealth>().TakeDamage(15);
+            collision.GetComponent<PlayerHealth>().TakeDamage(damage);
             Destroy(gameObject);
         }
     }

@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9104655545229655524}
   - component: {fileID: 2342091102109451487}
+  - component: {fileID: 6219182949299112253}
   m_Layer: 0
   m_Name: gun
   m_TagString: Untagged
@@ -56,7 +57,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1917895466772737296}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -115,6 +116,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6219182949299112253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1917895466772737296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 005d0b46c099c9c4e9f81a396b9895b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sr: {fileID: 2342091102109451487}
 --- !u!1 &2678885941166170124
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +193,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.06, y: 1.12}
+  m_Offset: {x: -0.06, y: 1.39}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -456,10 +470,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpawn: {fileID: 8889539180187842923}
   rotateObject: {fileID: 2678885941166170124}
+  activeGun: {fileID: 11400000, guid: 9c4b5115c7549a74f8a1d428f57c7351, type: 2}
   bullet: {fileID: 6705813349414736844, guid: f0dca07f1576fee4dadeaf8133f716d7, type: 3}
-  bulletSpeed: 15
-  bulletTime: 3
-  shootDelay: 0.25
 --- !u!114 &2583535275172595020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,7 +523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073362e764d025d4b98499cb78b653fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ability: {fileID: 11400000, guid: 8adf6651a21bf334aa6aef6cbf3e1be5, type: 2}
+  ability: {fileID: 0}
 --- !u!114 &4588177195230309612
 MonoBehaviour:
   m_ObjectHideFlags: 0

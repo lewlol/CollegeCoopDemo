@@ -16,11 +16,9 @@ public class Shooting : MonoBehaviour
 
     public GameObject rotateObject;
 
-    [Header("Gun Options")]
+    public GunData activeGun;
+
     public GameObject bullet;
-    public float bulletSpeed;
-    public float bulletTime;
-    public float shootDelay;
 
 
     private void Awake()
@@ -38,7 +36,7 @@ public class Shooting : MonoBehaviour
             {
                 //Shoot
                 DetermineDirection();
-                shootCountdown = shootDelay;
+                shootCountdown = activeGun.shootDelay;
             }
         }
     }
@@ -71,8 +69,9 @@ public class Shooting : MonoBehaviour
             return;
 
         GameObject b = Instantiate(bullet, bulletSpawn.position,transform.rotation);
-        b.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
-        Destroy(b, bulletTime);
+        b.GetComponent<Rigidbody2D>().velocity = direction * activeGun.bulletSpeed;
+        b.GetComponent<Bullet>().damage = activeGun.damage;
+        Destroy(b, activeGun.bulletTime);
     }
 
     private void OnEnable()

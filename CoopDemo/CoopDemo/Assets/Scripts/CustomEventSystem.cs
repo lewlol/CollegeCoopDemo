@@ -109,4 +109,13 @@ public class CustomEventSystem : MonoBehaviour
             onPlayerRotated(rot);   
         }
     }
+
+    public event Action<Sprite> onGunPickup;
+    public void GunPickup(Sprite gunSprite)
+    {
+        if(onGunPickup != null)
+        {
+            onGunPickup(gunSprite);
+        }
+    }
 }
